@@ -1,0 +1,89 @@
+{
+  "home": {
+    "appTitle": "MapleLens",
+    "subtitle": "WZ Viewer",
+    "homeBtn": "Home / WZ Selection",
+    "readmeBtn": "Documentation / Readme",
+    "settingsBtn": "Open Settings",
+    "status": "Backend service running at {url}"
+  },
+  "common": {
+    "wzFile": "WZ File",
+    "selectDir": "Select Directory",
+    "icon": "Icon",
+    "audio": "Audio",
+    "animProgress": "Anim {processed}/{total}",
+    "location": "Location",
+    "savedTo": "Saved To",
+    "path": "Path",
+    "noValidFrames": "No valid frames.",
+    "exportSuccess": "Export successful!",
+    "exportFailed": "Export failed:",
+    "cannotPlayAudio": "Cannot play audio: ",
+    "pathOpened": "Folder opened successfully.",
+    "pathOpenFailed": "Could not open path:",
+    "askOpenDir": "Export successful! Files saved to:\n{path}\n\nDo you want to open this folder?"
+  },
+  "languages": {
+    "en": "English",
+    "zh-CN": "中文",
+    "ko": "한국어"
+  },
+  "loader": {
+    "parsing": "Parsing WZ Structure...",
+    "selectFile": "Select Base.wz",
+    "dropZoneHelp": "Click to browse or drag file here",
+    "recentFiles": "Recent Files",
+    "removeHistory": "Remove from history",
+    "errorSelectBase": "Error: Please select Base.wz",
+    "loadingPrefix": "Loading:",
+    "failedPrefix": "Failed:"
+  },
+  "skillList": {
+    "allJobs": "All Jobs",
+    "searchPlaceholder": "Search...",
+    "refreshBtn": "Refresh",
+    "loading": "Loading...",
+    "noData": "No data.",
+    "noMatches": "No matches.",
+    "showingStatus": "Showing {filtered} of {total}",
+    "totalStatus": "Total: {total}"
+  },
+  "skillDetail": {
+    "selectSkill": "Select a skill to view details",
+    "loading": "Loading...",
+    "exportAllBtn": "Export All Assets",
+    "exportingPrefix": "Exporting",
+    "audioSection": "Audio ({count})",
+    "animationsSection": "Animations ({count})",
+    "dragDropHint": "Drag & Drop Images supported",
+    "noAnimData": "No animation nodes. Drag images here to preview.",
+    "playBtn": "Play",
+    "exportBtn": "Export",
+    "errorExportFrames": "Error exporting frames:",
+    "exportFailedAll": "Batch export failed:",
+    "soundExportSuccess": "Sound exported ({format})!",
+    "exportSuccessAll": "All assets exported successfully!",
+    "animExportSuccess": "Animation '{name}' exported successfully!"
+  },
+  "settings": {
+    "title": "Settings",
+    "languageLabel": "Language",
+    "exportPathLabel": "Default Export Path",
+    "exportPathDefault": "No default path set",
+    "showOriginLabel": "Show origin (anchor point) on animations",
+    "exportEqualLabel": "Export frames with equal dimensions",
+    "cancelBtn": "Cancel",
+    "saveBtn": "Save"
+  },
+  "animationPlayer": {
+    "toggleView": "Toggle View",
+    "background": "Background",
+    "speed": "Speed",
+    "exportBtn": "Exp",
+    "bgCheck": "Chk",
+    "bgWhite": "Wht",
+    "bgDark": "Drk",
+    "bgGreen": "Grn"
+  }
+}

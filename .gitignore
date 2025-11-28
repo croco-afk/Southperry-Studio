@@ -1,0 +1,23 @@
+# --------------------
+# Tauri / Rust 部分
+# --------------------
+/src-tauri/target/
+/src-tauri/Cargo.lock
+/src-tauri/gen/
+
+# --------------------
+# Node / Vue / Vite 部分
+# --------------------
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+.vite/
+*.local
+
+# --------------------
+# 操作系统和其他
+# --------------------
+.DS_Store
+Thumbs.db
+repomix-output.xml

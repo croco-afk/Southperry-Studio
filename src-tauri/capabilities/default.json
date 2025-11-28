@@ -1,0 +1,31 @@
+{
+  "identifier": "main-window-capabilities",
+  "description": "Capability for the main window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "dialog:allow-message",
+    "store:default",
+    "window-state:default",
+    "opener:default",
+    "shell:allow-open", 
+    "dialog:default",
+    
+    {
+      "identifier": "fs:allow-mkdir",
+      "allow": [{ "path": "**" }] 
+    },
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [{ "path": "**" }]
+    },
+    {
+        "identifier": "fs:allow-exists",
+        "allow": [{ "path": "**" }]
+    }
+  ]
+}

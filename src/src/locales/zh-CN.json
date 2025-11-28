@@ -1,0 +1,89 @@
+{
+  "home": {
+    "appTitle": "枫之镜",
+    "subtitle": "WZ 查看器",
+    "homeBtn": "主页 / WZ 选择",
+    "readmeBtn": "文档 / 说明",
+    "settingsBtn": "打开设置",
+    "status": "后端服务运行于 {url}"
+  },
+  "common": {
+    "wzFile": "WZ 文件",
+    "selectDir": "选择目录",
+    "icon": "图标",
+    "audio": "音频",
+    "animProgress": "动画 {processed}/{total}",
+    "location": "位置",
+    "savedTo": "已保存至",
+    "path": "路径",
+    "noValidFrames": "无有效帧。",
+    "exportSuccess": "导出成功！",
+    "exportFailed": "导出失败：",
+    "cannotPlayAudio": "无法播放音频：",
+    "pathOpened": "文件夹已打开。",
+    "pathOpenFailed": "无法打开路径:",
+    "askOpenDir": "导出成功！文件保存至：\n{path}\n\n是否打开该文件夹？"
+  },
+  "languages": {
+    "en": "英语",
+    "zh-CN": "中文",
+    "ko": "韩语"
+  },
+  "loader": {
+    "parsing": "正在解析 WZ 结构...",
+    "selectFile": "选择 Base.wz",
+    "dropZoneHelp": "点击浏览或拖拽文件到此处",
+    "recentFiles": "最近文件",
+    "removeHistory": "从历史记录中移除",
+    "errorSelectBase": "错误: 请选择 Base.wz",
+    "loadingPrefix": "正在加载:",
+    "failedPrefix": "失败:"
+  },
+  "skillList": {
+    "allJobs": "所有职业",
+    "searchPlaceholder": "搜索...",
+    "refreshBtn": "刷新",
+    "loading": "正在加载...",
+    "noData": "无数据。",
+    "noMatches": "无匹配项。",
+    "showingStatus": "显示 {total} 条中的 {filtered} 条",
+    "totalStatus": "总计: {total}"
+  },
+  "skillDetail": {
+    "selectSkill": "选择一个技能以查看详情",
+    "loading": "正在加载...",
+    "exportAllBtn": "导出所有资源",
+    "exportingPrefix": "正在导出",
+    "audioSection": "音频 ({count})",
+    "animationsSection": "动画 ({count})",
+    "dragDropHint": "支持拖放图片",
+    "noAnimData": "无动画节点。将图片拖到此处预览。",
+    "playBtn": "播放",
+    "exportBtn": "导出",
+    "errorExportFrames": "导出帧时出错：",
+    "exportFailedAll": "批量导出失败：",
+    "soundExportSuccess": "音频 ({format}) 已导出！",
+    "exportSuccessAll": "所有资源已成功导出！",
+    "animExportSuccess": "动画 '{name}' 已成功导出！"
+  },
+  "settings": {
+    "title": "设置",
+    "languageLabel": "语言",
+    "exportPathLabel": "默认导出路径",
+    "exportPathDefault": "未设置默认路径",
+    "showOriginLabel": "在动画上显示原点（锚点）",
+    "exportEqualLabel": "导出等尺寸帧",
+    "cancelBtn": "取消",
+    "saveBtn": "保存"
+  },
+  "animationPlayer": {
+    "toggleView": "切换视图",
+    "background": "背景",
+    "speed": "速度",
+    "exportBtn": "导出",
+    "bgCheck": "网格",
+    "bgWhite": "白",
+    "bgDark": "深",
+    "bgGreen": "绿"
+  }
+}

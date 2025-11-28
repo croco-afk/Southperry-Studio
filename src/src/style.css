@@ -1,0 +1,172 @@
+/* --- Design System Variables --- */
+:root {
+  /* 基础字号与字体 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px; /* 稍微减小基准字号以适应紧凑布局 */
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* 亮色模式 (默认) */
+  --bg-app: #f3f4f6;       /* 应用背景底色 */
+  --bg-panel: #ffffff;     /* 卡片/面板背景 */
+  --border-color: #e5e7eb; /* 边框颜色 */
+  
+  --text-main: #1f2937;    /* 主要文字 */
+  --text-muted: #6b7280;   /* 次要文字 */
+  
+  --primary: #3b82f6;      /* 主题色 (蓝) */
+  --primary-hover: #2563eb;
+  
+  --radius-sm: 4px;
+  --radius-md: 6px;
+
+  /* 浏览器平滑处理 */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: #1a1a1a;
+    --bg-panel: #242424;
+    --border-color: #333333;
+    
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    
+    --primary: #646cff;
+    --primary-hover: #747bff;
+  }
+}
+
+/* --- Global Reset & Layout --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* 关键修改：取消 flex center，改为全屏布局 */
+  display: block; 
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  overflow: hidden; /* 防止 body 滚动，让内部组件自己滚动 */
+}
+
+#app {
+  /* 关键修改：让 Vue 根节点占满屏幕 */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; /* 移除默认 padding */
+  text-align: left; /* 恢复默认对齐 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Typography --- */
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1em;
+}
+
+/* --- UI Components --- */
+
+/* Modern Buttons */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  padding: 0.5em 1em;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-panel);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--bg-app); /* 稍微变深/变浅 */
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Inputs (Global Style) */
+input[type="text"], 
+input[type="number"],
+select {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  background-color: var(--bg-panel);
+  color: var(--text-main);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1); /* 聚焦光晕 */
+}
+
+/* Scrollbars (Webkit) - 让滚动条在 Windows 上更现代 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db; /* 浅灰 */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af; /* 深灰 */
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #6b7280;
+  }
+}

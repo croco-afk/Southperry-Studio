@@ -1,0 +1,89 @@
+{
+  "home": {
+    "appTitle": "MapleLens",
+    "subtitle": "WZ Viewer",
+    "homeBtn": "홈 / WZ 선택",
+    "readmeBtn": "문서 / 읽어보기",
+    "settingsBtn": "설정 열기",
+    "status": "{url} 에서 백엔드 서비스 실행 중"
+  },
+  "common": {
+    "wzFile": "WZ 파일",
+    "selectDir": "디렉토리 선택",
+    "icon": "아이콘",
+    "audio": "오디오",
+    "animProgress": "애니메이션 {processed}/{total}",
+    "location": "위치",
+    "savedTo": "저장 위치",
+    "path": "경로",
+    "noValidFrames": "유효한 프레임이 없습니다.",
+    "exportSuccess": "내보내기 성공!",
+    "exportFailed": "내보내기 실패:",
+    "cannotPlayAudio": "오디오를 재생할 수 없습니다: ",
+    "pathOpened": "폴더를 성공적으로 열었습니다.",
+    "pathOpenFailed": "경로를 열 수 없습니다:",
+    "askOpenDir": "내보내기 성공! 파일 저장 위치:\n{path}\n\n이 폴더를 여시겠습니까?"
+  },
+  "languages": {
+    "en": "English",
+    "zh-CN": "中文",
+    "ko": "한국어"
+  },
+  "loader": {
+    "parsing": "WZ 구조 분석 중...",
+    "selectFile": "Base.wz 선택",
+    "dropZoneHelp": "클릭하여 찾아보거나 파일을 여기에 드래그하세요",
+    "recentFiles": "최근 파일",
+    "removeHistory": "기록에서 제거",
+    "errorSelectBase": "오류: Base.wz를 선택해주세요",
+    "loadingPrefix": "로딩 중:",
+    "failedPrefix": "실패:"
+  },
+  "skillList": {
+    "allJobs": "모든 직업",
+    "searchPlaceholder": "검색...",
+    "refreshBtn": "새로고침",
+    "loading": "로딩 중...",
+    "noData": "데이터 없음.",
+    "noMatches": "일치하는 항목 없음.",
+    "showingStatus": "총 {total}개 중 {filtered}개 표시",
+    "totalStatus": "총계: {total}"
+  },
+  "skillDetail": {
+    "selectSkill": "상세 정보를 보려면 스킬을 선택하세요",
+    "loading": "로딩 중...",
+    "exportAllBtn": "모든 애셋 내보내기",
+    "exportingPrefix": "내보내는 중",
+    "audioSection": "오디오 ({count})",
+    "animationsSection": "애니메이션 ({count})",
+    "dragDropHint": "이미지 드래그 앤 드롭 지원",
+    "noAnimData": "애니메이션 노드가 없습니다. 이미지를 여기에 드래그하여 미리보기하세요.",
+    "playBtn": "재생",
+    "exportBtn": "내보내기",
+    "errorExportFrames": "프레임 내보내기 오류:",
+    "exportFailedAll": "일괄 내보내기 실패:",
+    "soundExportSuccess": "오디오 ({format}) 내보내기 성공!",
+    "exportSuccessAll": "모든 에셋을 성공적으로 내보냈습니다!",
+    "animExportSuccess": "애니메이션 '{name}'이(가) 성공적으로 내보내졌습니다!"
+  },
+  "settings": {
+    "title": "설정",
+    "languageLabel": "언어",
+    "exportPathLabel": "기본 내보내기 경로",
+    "exportPathDefault": "기본 경로가 설정되지 않았습니다",
+    "showOriginLabel": "애니메이션에 원점(앵커 포인트) 표시",
+    "exportEqualLabel": "균일한 크기로 프레임 내보내기",
+    "cancelBtn": "취소",
+    "saveBtn": "저장"
+  },
+  "animationPlayer": {
+    "toggleView": "뷰 전환",
+    "background": "배경",
+    "speed": "속도",
+    "exportBtn": "내보내기",
+    "bgCheck": "체크",
+    "bgWhite": "화이트",
+    "bgDark": "다크",
+    "bgGreen": "그린"
+  }
+}
