@@ -3,6 +3,7 @@
     "appTitle": "MapleLens",
     "subtitle": "WZ Viewer",
     "homeBtn": "Home / WZ Selection",
+    "mapSelectionBtn": "Map Viewer",
     "readmeBtn": "Documentation / Readme",
     "settingsBtn": "Open Settings",
     "status": "Backend service running at {url}"
@@ -85,5 +86,20 @@
     "bgWhite": "Wht",
     "bgDark": "Drk",
     "bgGreen": "Grn"
+  },
+  "mapSelector": {
+    "title": "Map List",
+    "searchPlaceholder": "Search by map name, region, or ID",
+    "loading": "Loading maps...",
+    "error": "Error",
+    "noMapsFound": "No maps found"
+  },
+  "mapViewer": {
+    "minimapPreviewTitle": "Minimap Preview",
+    "noMinimapAvailable": "Minimap not available",
+    "mapRegionLabel": "Region:",
+    "mapNameLabel": "Map Name:",
+    "mapIdLabel": "Map ID:",
+    "noMapSelected": "No map selected"
   }
 }

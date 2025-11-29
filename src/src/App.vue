@@ -2,14 +2,13 @@
   <div class="app-container">
     <div class="header-bar">
       <div class="header-left">
-        <!-- 直接使用全局 $t -->
         <p>{{ $t('home.appTitle') }}</p>
         <span class="subtitle">{{ $t('home.subtitle') }}</span>
       </div>
       
       <div class="header-actions">
         <button 
-          @click="switchToHome" 
+          @click="switchToView('home')"
           class="btn-icon" 
           :class="{ active: currentView === 'home' }"
           :title="$t('home.homeBtn')"
@@ -18,10 +17,23 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
           </svg>
         </button>
-        
-        <!-- 2. Readme Button (新增：切换到文档视图) -->
+
+        <!-- Map Button -->
         <button 
-          @click="currentView = 'readme'" 
+          @click="switchToView('map-selection')" 
+          class="btn-icon" 
+          :class="{ active: currentView === 'map-selection' }"
+          :title="$t('home.mapSelectionBtn')"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </button>
+
+        <!-- Readme Button -->
+        <button 
+          @click="switchToView('readme')" 
           class="btn-icon" 
           :class="{ active: currentView === 'readme' }"
           :title="$t('home.readmeBtn')"
@@ -31,7 +43,7 @@
           </svg>
         </button>
 
-        <!-- 3. Settings Button -->
+        <!-- Settings Button -->
         <button @click="showSettings = true" class="btn-icon" :title="$t('home.settingsBtn')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
@@ -46,8 +58,14 @@
       <!-- Readme 视图 -->
       <ReadmeViewer v-if="currentView === 'readme'" /> 
 
-      <!-- 主功能视图 (使用 v-else 保持原逻辑) -->
-      <template v-else>
+      <MapSelectionPage 
+         v-else-if="currentView === 'map-selection'"
+         :serverUrl="serverUrl"  
+         @close="switchToView('home')" 
+       />
+
+      <!-- 主功能视图 -->
+      <template v-else-if="currentView === 'home'">
         <WzLoader @wz-loaded="handleLoaded" v-if="!serverUrl" />
         
         <div v-else class="viewer-wrapper">
@@ -83,7 +101,8 @@ import { ref, onMounted } from 'vue';
 import WzLoader from './components/WzLoader.vue';
 import SkillViewer from './components/SkillViewer.vue';
 import SettingsModal from './components/SettingsModal.vue';
-import ReadmeViewer from './components/ReadmeViewer.vue'; // 引入新组件
+import ReadmeViewer from './components/ReadmeViewer.vue';
+import MapSelectionPage from './components/MapSelectionPage.vue'; 
 
 const serverUrl = ref('');
 const showSettings = ref(false);
@@ -91,8 +110,7 @@ const defaultExportPath = ref('./');
 const showOriginGlobal = ref(false);
 const useEqualDimensions = ref(true);
 
-// --- 新增状态 ---
-const currentView = ref('home'); // 'home' | 'readme'
+const currentView = ref('home');
 const appLanguage = ref('en');
 
 onMounted(() => {
@@ -104,12 +122,11 @@ onMounted(() => {
     showOriginGlobal.value = (savedOrigin === 'true');
   }
 
-  // 读取新设置
   const savedEqual = localStorage.getItem('setting_equal_dims');
   if (savedEqual) useEqualDimensions.value = (savedEqual === 'true');
   
   const savedLang = localStorage.getItem('app_language');
-  if (savedLang) appLanguage.value = savedLang; // 只要 localStorage 能存 ko 就没问题
+  if (savedLang) appLanguage.value = savedLang;
 });
 
 const handleLoaded = (url) => {
@@ -125,22 +142,22 @@ const updateSettings = (settings) => {
   if (settings.hasOwnProperty('showOrigin')) showOriginGlobal.value = settings.showOrigin;
   if (settings.hasOwnProperty('equalDimensions')) useEqualDimensions.value = settings.equalDimensions;
   
-  // 保存语言 (SettingsModal 会 emit 完整的 settings 对象，或者我们利用 v-model 自动同步)
   if (settings.hasOwnProperty('language')) {
     appLanguage.value = settings.language;
     localStorage.setItem('app_language', settings.language);
   }
 };
 
-const switchToHome = () => {
-  if (currentView.value === 'readme') {
-    currentView.value = 'home';
-  } else {
-    // 如果已经在 Home，点击 Home 按钮可以触发重置 WZ (可选)
-    resetApp();
+// 统一视图切换逻辑
+const switchToView = (viewName) => {
+  if (currentView.value === viewName) {
+    if (viewName === 'home') {
+        resetApp(); 
+    }
+    return;
   }
+  currentView.value = viewName;
 };
-
 
 const resetApp = () => {
   serverUrl.value = '';
@@ -161,17 +178,17 @@ body {
   color: #1f2937;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* 禁止浏览器默认滚动条 */
+  overflow: hidden; 
 }
 
 .app-container {
-  height: 100vh; /* 强制 100% 视口高度 */
+  height: 100vh; 
   display: flex;
-  flex-direction: column; /* 上下布局 */
+  flex-direction: column; 
 }
 
 .header-bar {
-  flex-shrink: 0; /* 防止 Header 被压缩 */
+  flex-shrink: 0; 
   background: white;
   border-bottom: 1px solid #e5e7eb;
   padding: 0 10px 10px;
@@ -213,7 +230,6 @@ h1 {
     align-items: center;
 }
 
-/* 新增或修改为 btn-icon 样式 (更紧凑的图标按钮) */
 .btn-icon {
     display: flex;
     align-items: center;
@@ -235,7 +251,7 @@ h1 {
 }
 
 .btn-icon svg {
-  width: 18px; /* 图标保持不变 */
+  width: 18px; 
   height: 18px;
   stroke-width: 2;
 }
@@ -276,7 +292,7 @@ h1 {
 }
 
 .btn-icon.active {
-  background: #e5e7eb; /* 灰色背景表示激活 */
+  background: #e5e7eb; 
   color: #111827;
   border-color: #d1d5db;
 }
