@@ -1,17 +1,10 @@
 <template>
   <div class="map-viewer">
-    <!-- 关闭按钮在图片中位于右上角，这里添加它 -->
     <button class="close-button" @click="$emit('close')">×</button>
     <div class="minimap-preview-section">
       <h3>{{ $t('mapViewer.minimapPreviewTitle') }}</h3>
       <div v-if="selectedMap" class="minimap-content">
-        <template v-if="selectedMap.minimapUrl"> <!-- <<-- 新增条件渲染 -->
-          <img :src="selectedMap.minimapUrl" :alt="selectedMap.name || 'Minimap Preview'" class="minimap-image">
-        </template>
-        <div v-else class="no-minimap-placeholder"> <!-- <<-- 新增替代内容 -->
-          {{ $t('mapViewer.noMinimapAvailable') }}
-        </div>
-        <div class="map-details">
+          <div class="map-details">
           <p>
             <strong>{{ $t('mapViewer.mapRegionLabel') }}</strong> {{ selectedMap.region }} 
             <span class="copy-icon" @click="copyToClipboard(selectedMap.region)">📋</span>
@@ -24,6 +17,21 @@
             <strong>{{ $t('mapViewer.mapIdLabel') }}</strong> {{ selectedMap.id }} 
             <span class="copy-icon" @click="copyToClipboard(selectedMap.id)">📋</span>
           </p>
+        </div>
+        
+        <template v-if="selectedMap.minimapUrl && !imageLoadError">
+          <img 
+            :src="selectedMap.minimapUrl" 
+            :alt="selectedMap.name || 'Minimap Preview'" 
+            class="minimap-image"
+            @error="handleImageError"
+          >
+        </template>
+        <div v-else-if="imageLoadError" class="no-minimap-placeholder">
+          Minimap not found or cannot be loaded
+        </div>
+        <div v-else class="no-minimap-placeholder">
+          {{ $t('mapViewer.noMinimapAvailable') }}
         </div>
       </div>
       <div v-else class="no-map-selected">
@@ -42,7 +50,21 @@ export default {
       default: null
     }
   },
+  data() {
+    return {
+      imageLoadError: false
+    };
+  },
+  watch: {
+    selectedMap() {
+      this.imageLoadError = false;
+    }
+  },
   methods: {
+    handleImageError() {
+      console.error('Failed to load minimap image for map:', this.selectedMap?.id);
+      this.imageLoadError = true;
+    },
     async copyToClipboard(text) {
       if (navigator.clipboard) {
         try {
@@ -127,8 +149,8 @@ export default {
 
 
 .minimap-image {
-  max-width: 100%;
-  height: auto;
+  max-width: 200px;
+  max-height: 150px;
   border: 1px solid #ddd;
   border-radius: 4px;
   display: block;

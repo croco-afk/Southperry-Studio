@@ -39,6 +39,14 @@ export default {
     };
   },
   methods: {
+    getMapFolder(mapId) {
+      const firstDigit = mapId.charAt(0);
+      return `Map${firstDigit}`;
+    },
+    getMinimapUrl(mapId) {
+      const mapFolder = this.getMapFolder(mapId);
+      return `${this.serverUrl}/node/image_unparsed/Map/Map/${mapFolder}/${mapId}.img/miniMap/canvas`;
+    },
     handleMapSelected(map) {
       this.currentSelectedMap = map;
       // 如果需要，可以在这里发起另一个API请求以获取所选地图的更详细数据
@@ -68,20 +76,11 @@ export default {
           const mapName = mapData[1] || null;
           const streetName = mapData[2] || 'N/A'; // streetName 在前端显示为 region
           
-          // 根据Wz文件结构约定，MapID的第一位数字通常对应MapX文件夹
-          // 例如 '103010000' -> Map1, '000000000' -> Map0
-          // const mapFolderPrefix = mapId.charAt(0);
-          // const mapFolder = `Map${mapFolderPrefix}`;
-          
-          // 构建 minimap 的 URL。使用 /node/image_unparsed 以确保处理 UOL 和内部链接
-          // const minimapUrl = `${this.serverUrl}/node/image_unparsed/Map/${mapFolder}/${mapId}.img/minimap`;
-
           return {
             id: mapId,
             name: mapName,
             region: streetName,
-            // 暂时不包含 minimapUrl 字段
-            // minimapUrl: minimapUrl 
+            minimapUrl: this.getMinimapUrl(mapId)
           };
         });
 
@@ -92,8 +91,6 @@ export default {
         if (defaultMap) {
             // 这里可以直接使用从 API 获取到的 defaultMap 对象
             this.currentSelectedMap = defaultMap;
-            // 调试信息：minimapUrl 已不再生成，所以移除此log
-            // console.log("Default map minimapUrl:", this.currentSelectedMap.minimapUrl);
         } else if (this.availableMaps.length > 0) {
           // 如果没有默认地图，则默认选中列表中的第一个地图
           this.currentSelectedMap = this.availableMaps[0];
