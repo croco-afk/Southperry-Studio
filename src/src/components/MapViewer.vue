@@ -18,7 +18,7 @@
             <span class="copy-icon" @click="copyToClipboard(selectedMap.id)">📋</span>
           </p>
         </div>
-        
+
         <template v-if="selectedMap.minimapUrl && !imageLoadError">
           <img 
             :src="selectedMap.minimapUrl" 
@@ -150,7 +150,7 @@ export default {
 
 .minimap-image {
   max-width: 200px;
-  max-height: 150px;
+  max-height: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
   display: block;
